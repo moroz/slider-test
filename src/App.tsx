@@ -1,45 +1,23 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import styles from "./Slider.module.sass";
+import ReactSlider from "react-slider";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+export default () => (
+  <div className={styles.container}>
+    <div className={styles.innerContainer}>
+      <ReactSlider
+        className={styles.slider}
+        min={0}
+        max={10}
+        markClassName={styles.mark}
+        marks
+        trackClassName={styles.track}
+        thumbClassName={styles.thumb}
+        renderMark={(props) => (
+          <span {...props}>
+            <span className={styles.label}>{Number(props.key) + 1}屆</span>
+          </span>
+        )}
+      />
     </div>
-  )
-}
-
-export default App
+  </div>
+);
